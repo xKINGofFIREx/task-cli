@@ -1,19 +1,21 @@
-extern crate chrono;
+use serde::{Deserialize, Serialize};
+use chrono::{DateTime, Utc, serde::ts_seconds};
 
-pub mod task {
-    use chrono::{DateTime, Utc};
+#[derive(Deserialize, Serialize)]
+pub struct Task {
+    id: u64,
+    description: String,
+    status: Status,
 
-    struct Task {
-        id: u64,
-        description: String,
-        status: Status,
-        created_at: DateTime<Utc>,
-        updated_at: DateTime<Utc>,
-    }
+    #[serde(with = "ts_seconds")]
+    created_at: DateTime<Utc>,
+    #[serde(with = "ts_seconds")]
+    updated_at: DateTime<Utc>,
+}
 
-    enum Status {
-        Todo,
-        InProgress,
-        Done,
-    }
+#[derive(Deserialize, Serialize)]
+enum Status {
+    Todo,
+    InProgress,
+    Done,
 }
