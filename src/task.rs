@@ -3,18 +3,18 @@ use chrono::{DateTime, Utc, serde::ts_seconds};
 
 #[derive(Deserialize, Serialize)]
 pub struct Task {
-    id: u64,
-    description: String,
-    status: Status,
+    pub id: u64,
+    pub description: String,
+    pub status: Status,
 
     #[serde(with = "ts_seconds")]
-    created_at: DateTime<Utc>,
+    pub created_at: DateTime<Utc>,
     #[serde(with = "ts_seconds")]
-    updated_at: DateTime<Utc>,
+    pub updated_at: DateTime<Utc>,
 }
 
 #[derive(Deserialize, Serialize)]
-enum Status {
+pub enum Status {
     Todo,
     InProgress,
     Done,

@@ -11,6 +11,8 @@ fn main() {
     let args: Vec<String> = env::args().skip(1).collect();
 
     match args.as_slice() {
+        [cmd, description] if cmd == "add" => args_handler::add_task(description, &mut tasks),
+        [cmd, id, description] if cmd == "update" => args_handler::update_task(id, description, &mut tasks),
         _ => eprintln!("Too many arguments"),
     }
 
