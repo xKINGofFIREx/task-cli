@@ -18,12 +18,21 @@ pub fn update_task(id: &str, description: &str, tasks: &mut Vec<Task>) {
     task.updated_at = Utc::now();
 }
 
-pub fn delete_task(id: u64) {
-    todo!()
+pub fn delete_task(id: &str, tasks: &mut Vec<Task>) {
+    tasks.remove((id.parse::<u64>().expect("Failed to delete a task") - 1) as usize);
 }
 
-pub fn list_tasks() {
-    todo!()
+pub fn list_tasks(tasks: &mut Vec<Task>) {
+    for task in tasks {
+        print!("----------------------------------------------------");
+        println!("{}", task.id);
+        println!("{}", task.description);
+        println!("{}", task.status);
+        println!("{}", task.created_at);
+        println!("{}", task.updated_at);
+        print!("----------------------------------------------------");
+        println!();
+    }
 }
 
 pub fn list_done_tasks() {
