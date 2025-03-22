@@ -1,5 +1,5 @@
-use crate::task::Task;
 use crate::task::Status;
+use crate::task::Task;
 use chrono::Utc;
 
 pub fn add_task(description: &str, tasks: &mut Vec<Task>) {
@@ -13,7 +13,9 @@ pub fn add_task(description: &str, tasks: &mut Vec<Task>) {
 }
 
 pub fn update_task(id: &str, description: &str, tasks: &mut Vec<Task>) {
-    let task = tasks.get_mut((id.parse::<u64>().expect("Failed to parse id argument") - 1) as usize).unwrap();
+    let task = tasks
+        .get_mut((id.parse::<u64>().expect("Failed to parse id argument") - 1) as usize)
+        .unwrap();
     task.description = description.to_string();
     task.updated_at = Utc::now();
 }
@@ -35,14 +37,47 @@ pub fn list_tasks(tasks: &mut Vec<Task>) {
     }
 }
 
-pub fn list_done_tasks() {
-    todo!()
+pub fn list_done_tasks(tasks: &mut Vec<Task>) {
+    for task in tasks {
+        if let Status::Done = task.status {
+            print!("----------------------------------------------------");
+            println!("{}", task.id);
+            println!("{}", task.description);
+            println!("{}", task.status);
+            println!("{}", task.created_at);
+            println!("{}", task.updated_at);
+            print!("----------------------------------------------------");
+            println!();
+        }
+    }
 }
 
-pub fn list_inprogress_tasks() {
-    todo!()
+pub fn list_inprogress_tasks(tasks: &mut Vec<Task>) {
+    for task in tasks {
+        if let Status::InProgress = task.status {
+            print!("----------------------------------------------------");
+            println!("{}", task.id);
+            println!("{}", task.description);
+            println!("{}", task.status);
+            println!("{}", task.created_at);
+            println!("{}", task.updated_at);
+            print!("----------------------------------------------------");
+            println!();
+        }
+    }
 }
 
-pub fn list_todo_tasks() {
-    todo!()
+pub fn list_todo_tasks(tasks: &mut Vec<Task>) {
+    for task in tasks {
+        if let Status::Todo = task.status {
+            print!("----------------------------------------------------");
+            println!("{}", task.id);
+            println!("{}", task.description);
+            println!("{}", task.status);
+            println!("{}", task.created_at);
+            println!("{}", task.updated_at);
+            print!("----------------------------------------------------");
+            println!();
+        }
+    }
 }
