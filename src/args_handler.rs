@@ -81,3 +81,13 @@ pub fn list_todo_tasks(tasks: &mut Vec<Task>) {
         }
     }
 }
+
+pub fn mark_task_done(id: &str, tasks: &mut Vec<Task>) {
+    let task = tasks.get_mut((id.parse::<u64>().expect("Failed to parse id") - 1) as usize).unwrap();
+    task.status = Status::Done;
+}
+
+pub fn mark_task_in_progress(id: &str, tasks: &mut Vec<Task>) {
+    let task = tasks.get_mut((id.parse::<u64>().expect("Failed to parse id") - 1) as usize).unwrap();
+    task.status = Status::InProgress;
+}
