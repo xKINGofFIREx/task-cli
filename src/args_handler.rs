@@ -4,7 +4,7 @@ use chrono::Utc;
 
 pub fn add_task(description: &str, tasks: &mut Vec<Task>) {
     tasks.push(Task {
-        id: tasks.len() as u64,
+        id: (tasks.len() + 1) as u64,
         description: description.to_string(),
         status: Status::InProgress,
         created_at: Utc::now(),
@@ -21,17 +21,17 @@ pub fn update_task(id: &str, description: &str, tasks: &mut Vec<Task>) {
 }
 
 pub fn delete_task(id: &str, tasks: &mut Vec<Task>) {
-    tasks.remove((id.parse::<u64>().expect("Failed to delete a task") - 1) as usize);
+    tasks.remove((id.parse::<u64>().expect("Failed to parse id argument") - 1) as usize);
 }
 
 pub fn list_tasks(tasks: &mut Vec<Task>) {
     for task in tasks {
         println!("----------------------------------------------------");
-        println!("{}", task.id);
-        println!("{}", task.description);
-        println!("{}", task.status);
-        println!("{}", task.created_at);
-        println!("{}", task.updated_at);
+        println!("Id: {}", task.id);
+        println!("Description: {}", task.description);
+        println!("Status: {}", task.status);
+        println!("Created at: {}", task.created_at);
+        println!("Updated at: {}", task.updated_at);
         println!("----------------------------------------------------");
         println!();
     }
@@ -41,11 +41,11 @@ pub fn list_done_tasks(tasks: &mut Vec<Task>) {
     for task in tasks {
         if let Status::Done = task.status {
             println!("----------------------------------------------------");
-            println!("{}", task.id);
-            println!("{}", task.description);
-            println!("{}", task.status);
-            println!("{}", task.created_at);
-            println!("{}", task.updated_at);
+            println!("Id: {}", task.id);
+            println!("Description: {}", task.description);
+            println!("Status: {}", task.status);
+            println!("Created at: {}", task.created_at);
+            println!("Updated at: {}", task.updated_at);
             println!("----------------------------------------------------");
             println!();
         }
@@ -56,11 +56,11 @@ pub fn list_inprogress_tasks(tasks: &mut Vec<Task>) {
     for task in tasks {
         if let Status::InProgress = task.status {
             println!("----------------------------------------------------");
-            println!("{}", task.id);
-            println!("{}", task.description);
-            println!("{}", task.status);
-            println!("{}", task.created_at);
-            println!("{}", task.updated_at);
+            println!("Id: {}", task.id);
+            println!("Description: {}", task.description);
+            println!("Status: {}", task.status);
+            println!("Created at: {}", task.created_at);
+            println!("Updated at: {}", task.updated_at);
             println!("----------------------------------------------------");
             println!();
         }
@@ -69,25 +69,20 @@ pub fn list_inprogress_tasks(tasks: &mut Vec<Task>) {
 
 pub fn list_todo_tasks(tasks: &mut Vec<Task>) {
     for task in tasks {
-        if let Status::Todo = task.status {
-            println!("----------------------------------------------------");
-            println!("{}", task.id);
-            println!("{}", task.description);
-            println!("{}", task.status);
-            println!("{}", task.created_at);
-            println!("{}", task.updated_at);
-            println!("----------------------------------------------------");
-            println!();
-        }
+        if let Status::Todo = task.status {}
     }
 }
 
 pub fn mark_task_done(id: &str, tasks: &mut Vec<Task>) {
-    let task = tasks.get_mut((id.parse::<u64>().expect("Failed to parse id") - 1) as usize).unwrap();
+    let task = tasks
+        .get_mut((id.parse::<u64>().expect("Failed to parse id argument") - 1) as usize)
+        .unwrap();
     task.status = Status::Done;
 }
 
 pub fn mark_task_in_progress(id: &str, tasks: &mut Vec<Task>) {
-    let task = tasks.get_mut((id.parse::<u64>().expect("Failed to parse id") - 1) as usize).unwrap();
+    let task = tasks
+        .get_mut((id.parse::<u64>().expect("Failed to parse id argument") - 1) as usize)
+        .unwrap();
     task.status = Status::InProgress;
 }
