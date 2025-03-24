@@ -4,7 +4,6 @@ use std::fmt::{Display, Formatter, Result};
 
 #[derive(Deserialize, Serialize)]
 pub struct Task {
-    pub id: u64,
     pub description: String,
     pub status: Status,
 
