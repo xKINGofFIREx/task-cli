@@ -5,7 +5,7 @@ use chrono::Utc;
 pub fn add_task(description: &str, tasks: &mut Vec<Task>) {
     tasks.push(Task {
         description: description.to_string(),
-        status: Status::InProgress,
+        status: Status::Todo,
         created_at: Utc::now(),
         updated_at: Utc::now(),
     });
