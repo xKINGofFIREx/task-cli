@@ -26,13 +26,13 @@ pub fn delete_task(id: &str, tasks: &mut Vec<Task>) {
 
 pub fn list_tasks(tasks: &mut Vec<Task>) {
     for task in tasks {
-        print!("----------------------------------------------------");
+        println!("----------------------------------------------------");
         println!("{}", task.id);
         println!("{}", task.description);
         println!("{}", task.status);
         println!("{}", task.created_at);
         println!("{}", task.updated_at);
-        print!("----------------------------------------------------");
+        println!("----------------------------------------------------");
         println!();
     }
 }
@@ -40,13 +40,13 @@ pub fn list_tasks(tasks: &mut Vec<Task>) {
 pub fn list_done_tasks(tasks: &mut Vec<Task>) {
     for task in tasks {
         if let Status::Done = task.status {
-            print!("----------------------------------------------------");
+            println!("----------------------------------------------------");
             println!("{}", task.id);
             println!("{}", task.description);
             println!("{}", task.status);
             println!("{}", task.created_at);
             println!("{}", task.updated_at);
-            print!("----------------------------------------------------");
+            println!("----------------------------------------------------");
             println!();
         }
     }
@@ -55,13 +55,13 @@ pub fn list_done_tasks(tasks: &mut Vec<Task>) {
 pub fn list_inprogress_tasks(tasks: &mut Vec<Task>) {
     for task in tasks {
         if let Status::InProgress = task.status {
-            print!("----------------------------------------------------");
+            println!("----------------------------------------------------");
             println!("{}", task.id);
             println!("{}", task.description);
             println!("{}", task.status);
             println!("{}", task.created_at);
             println!("{}", task.updated_at);
-            print!("----------------------------------------------------");
+            println!("----------------------------------------------------");
             println!();
         }
     }
@@ -70,13 +70,13 @@ pub fn list_inprogress_tasks(tasks: &mut Vec<Task>) {
 pub fn list_todo_tasks(tasks: &mut Vec<Task>) {
     for task in tasks {
         if let Status::Todo = task.status {
-            print!("----------------------------------------------------");
+            println!("----------------------------------------------------");
             println!("{}", task.id);
             println!("{}", task.description);
             println!("{}", task.status);
             println!("{}", task.created_at);
             println!("{}", task.updated_at);
-            print!("----------------------------------------------------");
+            println!("----------------------------------------------------");
             println!();
         }
     }
