@@ -12,14 +12,33 @@ fn main() {
 
     match args.as_slice() {
         [cmd, description] if cmd == "add" => args_handler::add_task(description, &mut tasks),
-        [cmd, id, description] if cmd == "update" => args_handler::update_task(id, description, &mut tasks),
+
+        [cmd, id, description] if cmd == "update" => {
+            args_handler::update_task(id, description, &mut tasks)
+        }
+
         [cmd, id] if cmd == "delete" => args_handler::delete_task(id, &mut tasks),
+
         [cmd] if cmd == "list" => args_handler::list_tasks(&mut tasks),
-        [cmd, status] if cmd  == "list" && status == "done" => args_handler::list_done_tasks(&mut tasks),
-        [cmd, status] if cmd  == "list" && status == "todo" => args_handler::list_todo_tasks(&mut tasks),
-        [cmd, status] if cmd  == "list" && status == "in-progress" => args_handler::list_inprogress_tasks(&mut tasks),
+        
+        [cmd, status] if cmd == "list" && status == "done" => {
+            args_handler::list_done_tasks(&mut tasks)
+        }
+
+        [cmd, status] if cmd == "list" && status == "todo" => {
+            args_handler::list_todo_tasks(&mut tasks)
+        }
+        
+        [cmd, status] if cmd == "list" && status == "in-progress" => {
+            args_handler::list_inprogress_tasks(&mut tasks)
+        }
+
         [cmd, id] if cmd == "mark-done" => args_handler::mark_task_done(id, &mut tasks),
-        [cmd, id] if cmd == "mark-in-progress" => args_handler::mark_task_in_progress(id, &mut tasks),
+
+        [cmd, id] if cmd == "mark-in-progress" => {
+            args_handler::mark_task_in_progress(id, &mut tasks)
+        }
+
         _ => eprintln!("Wrong arguments"),
     }
 
