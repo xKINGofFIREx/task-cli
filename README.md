@@ -1,51 +1,51 @@
-#Simple CLI task manager
+# Simple CLI task manager
 
-##Adding new task
+## Adding new task
 ```
 task-cli add "Task Description"
 ```
 
-##Updating task 
+## Updating task 
 ```
 task-cli update 1 "New Task Description"
 ```
 
-##Deleting task
+## Deleting task
 ```
 task-cli delete 1
 ```
 
-##Listing tasks
+## Listing tasks
 
-###List all tasks
+### List all tasks
 ```
 task-cli list
 ```
 
-###List TODO tasks
+### List TODO tasks
 ```
 task-cli list-todo
 ```
 
 
-###List INPROGRESS tasks
+### List INPROGRESS tasks
 ```
 task-cli list-in-progress
 ```
 
-###List DONE tasks
+### List DONE tasks
 ```
 task-cli list-done
 ```
 
-##Marking tasks
+## Marking tasks
 
-###Mark INPROGRESS
+### Mark INPROGRESS
 ```
 task-cli mark-in-progress 1
 ```
 
-###Mark DONE
+### Mark DONE
 ```
 task-cli mark-done 1
 ```
