@@ -94,3 +94,44 @@ pub fn mark_task_in_progress(id: &str, tasks: &mut Vec<Task>) {
         .unwrap();
     task.status = Status::InProgress;
 }
+
+#[cfg(test)]
+mod test {
+    use super::*;
+
+    #[test]
+    fn adds_task_to_provided_vec() {
+        let mut tasks: Vec<Task> = Vec::new();
+        let description = "test desc";
+
+        add_task(description, &mut tasks);
+
+        assert!(tasks.get(0).unwrap().description == description);
+    }
+
+    #[test]
+    fn updates_existing_task() {
+        let mut tasks: Vec<Task> = Vec::new();
+        let description = "test desc";
+        let new_description = "new description";
+
+        add_task(description, &mut tasks);
+
+        update_task("1", new_description, &mut tasks);
+
+        assert!(tasks.get(0).unwrap().description == new_description);
+    }
+
+    #[test]
+    fn deletes_existing_task() {
+        let mut tasks: Vec<Task> = Vec::new();
+        let description = "test desc";
+
+        add_task(description, &mut tasks);
+
+        assert_eq!(tasks.len(), 1);
+
+        delete_task("1", &mut tasks);
+        assert_eq!(tasks.len(), 0);
+    }
+}
